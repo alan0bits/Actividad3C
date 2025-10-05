@@ -30,6 +30,7 @@ def insertar_datos_usuario(name, mail, phone, date, job, username,password):
               insert_user = """
                 INSERT INTO usuarios (nombre, correo, telefono, fecha_nacimiento, id_profesion) VALUES
                 (%s,%s,%s,%s,%s)
+                RETURNING id_usuario;
                 """
 
               cursor.execute(insert_user, (name, mail, phone, date, job))
@@ -40,7 +41,8 @@ def insertar_datos_usuario(name, mail, phone, date, job, username,password):
                 VALUES (%s, %s, %s);
                 """
               cursor.execute(insert_credentials, (user_id, username, password))
-
+              print(f"[INFO] Usuario '{name}' creado con ID {user_id} y credenciales asignadas.")
+              
     except Exception as e:
         print(f"[ERROR] {e}")
         conn.rollback()
