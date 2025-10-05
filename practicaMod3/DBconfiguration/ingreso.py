@@ -41,8 +41,8 @@ def insertar_datos_usuario(name, mail, phone, date, job, username,password):
                 VALUES (%s, %s, %s);
                 """
               cursor.execute(insert_credentials, (user_id, username, password))
-              print(f"[INFO] Usuario '{name}' creado con ID {user_id} y credenciales asignadas.")
-              
+              print(f"[INFO] Usuario '{username}' creado con ID {user_id} y  password creado '{password}'credenciales asignadas.")
+        return True
     except Exception as e:
         print(f"[ERROR] {e}")
         conn.rollback()
