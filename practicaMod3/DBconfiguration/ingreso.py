@@ -34,6 +34,7 @@ def insertar_datos_usuario(name, mail, phone, date, job, username,password):
                 """
 
               cursor.execute(insert_user, (name, mail, phone, date, job))
+              
               user_id = cursor.fetchone()[0]
 
               insert_credentials = """
@@ -41,7 +42,8 @@ def insertar_datos_usuario(name, mail, phone, date, job, username,password):
                 VALUES (%s, %s, %s);
                 """
               cursor.execute(insert_credentials, (user_id, username, password))
-              print(f"[INFO] Usuario '{username}' creado con ID {user_id} y  password creado '{password}'credenciales asignadas.")
+              conn.commit()
+              print(f"[INFO] Usuario '{username}'py creado con ID {user_id} y  password creado '{password}'credenciales asignadas.")
         return True
     except Exception as e:
         print(f"[ERROR] {e}")
